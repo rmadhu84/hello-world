@@ -1,0 +1,2 @@
+Create a new Component:
+    ng g c <ComponentName> //g - stands for generate, c - stands for Component.
