@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'courses',
-    template: '<h2>Courses</h2>'
+    selector: 'courses', //references the <courses> element. 
+    template: '<h2>My Courses</h2>'
 })
 export class CoursesComponent{
     
