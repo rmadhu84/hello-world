@@ -1,0 +1,159 @@
+Variable declarations:
+    syntax:
+        let <variable>:<type> = <value>;
+    keywords:
+        var, let (use 'let' when declaring a variable)
+        Differences between var and let:
+            1. when a variable is declared using 'var', the variable is scoped to 
+                the nearest function. This means that the variable is available 
+                throught the function. For example, when the variable is declared within
+                a For-Loop, the variable is accessible outside the loop.
+            2. When a variable is declared using 'let', the variable is scoped to the 
+                nearest code block. For example, when the variable is declare within 
+                a For-Loop, the variable is accessible only within the loop block.
+    Types of variables:
+        1. number
+        2. boolean
+        3. string
+        4. any
+        5. number[] = [1,2,3]
+        6. any[] = [1,true, 'a', 'false']
+        7. enum
+            enum Colors {Red = 0, Green = 1, Blue = 2};
+            let bg = Colors.Blue;
+    Type assertions:
+        Lets you specify the type of an 'any' variable.
+
+        example:
+            let message; //message is of 'any' type, when its not initialized with a value.
+            message = 'abc';
+            let endswithC = (<string>message).endsWith('c');
+            let another = (message as string).endsWith('c');
+    Functions:
+        JS method:
+            let log = function(message){
+                console.log(message);
+            }
+        TS method:
+            let log = (message)=>{
+                console.log(message);
+            }
+            //no argument function.
+            let log = ()=>{
+                console.log();
+            }
+            
+            Note: If only function is only one line, we can skip the curly braces.
+                    This is called arrow function. In java its called lambda expressiong
+
+            let log = (message)=>console.log(message);
+            let log = ()=>console.log();//no argument function.
+
+    Custom types:
+        let drawPoint = (point)=>{
+            //..
+        }
+        drawPoint({
+            x:1,
+            y:2
+        })
+
+        Inline annotation:
+        let drawPoint = (point:{ x: number, y:number})=>{
+            //..
+        }
+
+        Interfaces:
+            interface Point{ //interface name should always start with uppercase.
+                x: number,
+                y: number
+            }
+            let drawPoint = (point:Point)=>{
+                //..
+            }
+
+            Concept of cohesion:
+            Using the 'Point' interface to calculate distance between 2 points
+            let getDistance=(pointA: Point, pointB: Point)=>{
+               //..
+            }
+        Class and Objects:
+        Example:
+            class Point {
+                    x: number;
+                    y: number;
+                    draw() {
+                        console.log('X = ' + this.x + ' Y = ' + this.y);
+                    }
+                }
+            let point = new Point();
+            point.x = 1;
+            point.y = 2;
+            point.draw();
+        Constructors:
+        Constructors with required parameters
+            constructor(x:number, y:number){
+                this.x = x;
+                this.y = y;
+            }
+
+
+        Constructors with optional parameters
+            Prefix the parameter with '?' symbol
+             constructor(x?: number, y?:number){
+               this.x = x;
+               this.y = y;
+            }
+        
+        When the parameters of the contructors are prefixed with access modifiers,
+        Typescript, will generate the corresponding variables and initialize them
+        with the arguments. The above constructor can be re-written as below, to get
+        the same effect.
+
+        constructor(private x?:number, private y?:number){
+
+        }
+        Accessing x and y using methods:
+            getX(){
+                //..
+            }
+            getY(){
+
+            }
+            setX(value){
+                this.x = value;
+            }
+            setY(value){
+                this.y = value;
+            }
+
+            Now you access x and y, by calling these methods.
+            point.getX();
+            point.getY();
+
+        Properties:
+            You can also access x and y using Properties. 
+            Using the keywords 'get' or 'set' followed the name of the property 
+            and paratheses.
+            
+            get <propertyName>() \\: This is called a getter
+            set <propertyName>() \\: This is called a setter
+
+            Properties are defined as below:
+
+            get X(){
+                //..
+            }
+            get Y(){
+                //..
+            }
+            set X(value){
+                this.x = value;
+            }
+            set Y(value){
+                this.y = value;
+            }
+            
+            Now you can access x and y as fields, as follows:
+            let a = point.X;
+            let b = point.Y;
