@@ -23,7 +23,6 @@ import { CoursesService } from './courses.service';
                 </ul>
     `
 })
-<<<<<<< HEAD
 export class CoursesComponent {
     title = "List of courses";
     //courses = ["course1", "course2", "course3"];// Moving this to the courses.service.ts
@@ -40,12 +39,6 @@ export class CoursesComponent {
     }
 
     getTitle() {
-=======
-export class CoursesComponent{
-    title = "List of courses:";
-    courses = ["course1", "course2", "course3"];
-    getTitle(){
->>>>>>> d2700caa03a8244ac84a01a3251c2435e5ce0656
         return this.title;
 
     }
