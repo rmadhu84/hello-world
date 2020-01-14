@@ -1,2 +1,4 @@
 Create a new Component:
     ng g c <ComponentName> //g - stands for generate, c - stands for Component.
+Create a new Service:
+    ng g s <ServiceName> //s - stands for Service
