@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CoursesService } from './courses.service';
+import { HttpClient } from '@angular/common/http';
+import { HttpclientService } from './service/httpclient.service';
 
 @Component({
     selector: 'courses', //references the <courses> element. 
@@ -15,7 +17,8 @@ import { CoursesService } from './courses.service';
             DOM element either by adding a new element or removing an existing element.
         let <var> of <collection>
     */
-    template: `<h2>{{ getTitle() }}</h2> 
+    template: `<h1>{{ greet.message }}</h1>
+                <h2>{{ getTitle() }}</h2> 
                 <ul>
                     <li *ngFor="let course of courses">
                         {{ course }}
@@ -23,23 +26,34 @@ import { CoursesService } from './courses.service';
                 </ul>
     `
 })
-export class CoursesComponent {
+export class CoursesComponent implements OnInit {
+    
     title = "List of courses";
     //courses = ["course1", "course2", "course3"];// Moving this to the courses.service.ts
     courses;
+    greet:string;
     
     /*
     Injecting an object of service, using the constructor dependency injection.
     Must add CourseService to providers list in app.module.ts, in order to register this
     service class as a dependency to component(s).
     */
-    constructor(service: CoursesService){
+    constructor(service: CoursesService, public httpClientService:HttpclientService){
         //let service = new CoursesService();
         this.courses = service.getCourses();
     }
 
+    ngOnInit(){
+        
+        this.httpClientService.sayHello().subscribe(response => this.handleSuccessResponse(response));
+    }
     getTitle() {
         return this.title;
-
+    }
+    sayHello(){
+        return (this.greet as string);
+    }
+    handleSuccessResponse(response){
+        this.greet = response;
     }
 }
